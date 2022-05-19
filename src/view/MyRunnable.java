@@ -6,6 +6,7 @@ import static java.lang.Thread.sleep;
 
 public class MyRunnable implements Runnable {
     public ChessGameFrame chessGameFrame;
+
     public MyRunnable(ChessGameFrame chessGameFrame) {
         this.chessGameFrame = chessGameFrame;
     }
@@ -26,6 +27,11 @@ public class MyRunnable implements Runnable {
         chessGameFrame.refresh();
         chessGameFrame.repaint();
         chessGameFrame.getGameController().getChessboard().memory = new ArrayList<>();
-        chessGameFrame.getGameController().getChessboard().multiplyKillW =0;
+        chessGameFrame.getGameController().getChessboard().multiplyKillW = 0;
+        for (int i = 0; i < 6; i++) {
+            chessGameFrame.getGameController().getChessboard().blackSide[i] = String.valueOf(i);
+            chessGameFrame.getGameController().getChessboard().whiteSide[i] = String.valueOf(i);
+        }
+        chessGameFrame.getGameController().getChessboard().countDraw = 0;
     }
 }

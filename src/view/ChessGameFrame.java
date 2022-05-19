@@ -105,6 +105,11 @@ public class ChessGameFrame extends JFrame {
             gameController.getChessboard().specialPawn2 = null;
             gameController.getChessboard().multiplyKillW = 0;
             gameController.getChessboard().multiplyKillB = 0;
+            for (int i = 0; i < 6; i++) {
+                gameController.getChessboard().blackSide[i] = String.valueOf(i);
+                gameController.getChessboard().whiteSide[i] = String.valueOf(i);
+            }
+            gameController.getChessboard().countDraw = 0;
         });
         button.setLocation(HEIGHT - 25, HEIGHT / 10 + 60);
         button.setSize(200, 60);
@@ -134,6 +139,11 @@ public class ChessGameFrame extends JFrame {
             temp.append(path);
             temp.replace(temp.indexOf("棋盘"), temp.indexOf("棋盘") + 2, "步骤");
             gameController.loadLocationFromFile(temp.toString());
+            for (int i = 0; i < 6; i++) {
+                gameController.getChessboard().blackSide[i] = String.valueOf(i);
+                gameController.getChessboard().whiteSide[i] = String.valueOf(i);
+            }
+            gameController.getChessboard().countDraw = 0;
         });
     }
 
@@ -179,14 +189,18 @@ public class ChessGameFrame extends JFrame {
             gameController.getChessboard().memory.add(gameController.getChessboard().getChessboardGraph1());
             Thread aThread = new Thread(new MyRunnable(this));
             aThread.start();
-        }
-        else{
+        } else {
             getGameController().getChessboard().initChess();
             getGameController().getChessboard().resetCurrentColor();
             refresh();
             repaint();
             getGameController().getChessboard().memory = new ArrayList<>();
-            gameController.getChessboard().multiplyKillW =0;
+            gameController.getChessboard().multiplyKillW = 0;
+            for (int i = 0; i < 6; i++) {
+                gameController.getChessboard().blackSide[i] = String.valueOf(i);
+                gameController.getChessboard().whiteSide[i] = String.valueOf(i);
+            }
+            gameController.getChessboard().countDraw = 0;
         }
 
     }

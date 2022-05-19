@@ -42,6 +42,9 @@ public class Chessboard extends JComponent {
     public int pve = 0;
     public int multiplyKillW = 0;
     public int multiplyKillB = 0;
+    public int countDraw = 0;
+    String[] blackSide = {"1","2","3","4","5","6"};
+    String[] whiteSide = {"1","2","3","4","5","6"};
 
 
     public Chessboard(int width, int height) {
@@ -524,17 +527,16 @@ public class Chessboard extends JComponent {
         if (multiplyKillW == 5 || multiplyKillB == 5) {
             return true;
         }
-        String[] blackSide = new String[3];
-        String[] whiteSide = new String[3];
-        int count = 0;
-        if (count % 2 == 0) {
-            whiteSide[(count / 2) % 3] = getChessboardGraph1().substring(0, 64);
+        if (countDraw % 2 == 0) {
+            whiteSide[(countDraw / 2) % 6] = getChessboardGraph1().substring(0, 64);
         }
-        if (count % 2 == 1) {
-            blackSide[((count - 1) / 2) % 3] = getChessboardGraph1().substring(0,64);
+        if (countDraw % 2 == 1) {
+            blackSide[((countDraw - 1) / 2) % 3] = getChessboardGraph1().substring(0,64);
         }
-
-        count++;
+        if((blackSide[1].equals(blackSide[3])&&blackSide[3].equals(blackSide[5]))||(blackSide[0].equals(blackSide[2])&&blackSide[2].equals(blackSide[4]))||(whiteSide[0].equals(whiteSide[2])&&whiteSide[2].equals(whiteSide[4]))||(whiteSide[1].equals(whiteSide[3])&&whiteSide[3].equals(whiteSide[5]))){
+            return true;
+        }
+        countDraw++;
 
         if (!judgeKill(chess1)) {
             for (int i = 0; i < 8; i++) {

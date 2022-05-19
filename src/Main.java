@@ -57,5 +57,4 @@ public class Main {
             mainFrame.getGameController().getChessboard().pve =1;
         });
     }
-//zhangli.......
 }
