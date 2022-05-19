@@ -26,6 +26,7 @@ public class Main {
         button1.setLocation(180,120);
         button1.setSize(100, 60);
         button1.setFont(new Font("Rockwell", Font.BOLD, 10));
+        button1.setLabel("PVE");
 
         jFrame.add(button1);
         ImageIcon imageIcon=new ImageIcon(".\\Enter.jpg");
