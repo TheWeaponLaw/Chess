@@ -1,0 +1,99 @@
+package controller;
+
+
+import model.ChessColor;
+import model.ChessComponent;
+import view.Chessboard;
+import view.ChessboardPoint;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class ClickController {
+    private final Chessboard chessboard;
+    private ChessComponent first;
+
+    public ClickController(Chessboard chessboard) {
+        this.chessboard = chessboard;
+    }
+
+    public void onClick(ChessComponent chessComponent) {
+        if (first == null) {
+            if (handleFirst(chessComponent)) {
+                chessComponent.setSelected(true);
+                first = chessComponent;
+                chessboard.judgePawn(first);
+                for (int i = 0; i < chessComponent.moveTo(chessboard.getChessComponents()).size(); i++) {
+                    ChessboardPoint temp = chessComponent.moveTo(chessboard.getChessComponents()).get(i);
+                    if(!chessboard.killSelf(first,chessboard.getChessComponents()[temp.getX()][temp.getY()])){
+                    chessboard.getChessComponents()[temp.getX()][temp.getY()].setChosen(true);
+                    chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor=first.getChessColor();
+                    chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();}
+                }
+                first.repaint();
+            }
+        } else {
+            if (first == chessComponent) { // 再次点击取消选取
+                chessComponent.setSelected(false);
+                for (int i = 0; i < chessComponent.moveTo(chessboard.getChessComponents()).size(); i++) {
+                    ChessboardPoint temp = chessComponent.moveTo(chessboard.getChessComponents()).get(i);
+                    chessboard.getChessComponents()[temp.getX()][temp.getY()].setChosen(false);
+                    chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor=null;
+                    chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();
+                }
+                ChessComponent recordFirst = first;
+                first = null;
+                recordFirst.repaint();
+            } else if (handleSecond(chessComponent)) {
+                chessboard.memory.add(chessboard.getChessboardGraph1());
+                //repaint in swap chess method.
+                chessboard.swapColor();
+                for (int i = 0; i < first.moveTo(chessboard.getChessComponents()).size(); i++) {
+                    ChessboardPoint temp = first.moveTo(chessboard.getChessComponents()).get(i);
+                    chessboard.getChessComponents()[temp.getX()][temp.getY()].setChosen(false);
+                    chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor=null;
+                    chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();
+                }
+                chessboard.swapChessComponents(first, chessComponent);
+                first.setSelected(false);
+                first = null;
+            }
+        }
+//    if(chessboard.getCurrentColor()!=ChessColor.WHITE&&chessboard.pve==1){
+//        Random random = new Random();
+//        int t = random.nextInt(chessboard.randomChessComponent(ChessColor.BLACK).size());
+//        ChessComponent chess = chessboard.randomChessComponent(ChessColor.BLACK).get(t);
+//        int k = random.nextInt(chess.moveTo(chessboard.getChessComponents()).size());
+//        ChessComponent chess2 = chessboard.getChessComponents()[chess.moveTo(chessboard.getChessComponents()).get(k).getX()][chess.moveTo(chessboard.getChessComponents()).get(k).getY()];
+//        while((!chessboard.killSelf(chess, chess2) && chess2.getChessColor() != chessboard.getCurrentColor() &&
+//                chess.canMoveTo(chessboard.getChessComponents(), chess2.getChessboardPoint()))){
+//             k = random.nextInt(chess.moveTo(chessboard.getChessComponents()).size());
+//        }
+//        chessboard.memory.add(chessboard.getChessboardGraph1());
+//        chessboard.swapColor();
+//        chessboard.swapChessComponents(chess, chess2);
+
+    }
+
+    /**
+     * @param chessComponent 目标选取的棋子
+     * @return 目标选取的棋子是否与棋盘记录的当前行棋方颜色相同
+     */
+
+    private boolean handleFirst(ChessComponent chessComponent) {
+        return chessComponent.getChessColor() == chessboard.getCurrentColor();
+    }
+
+    /**
+     * @param chessComponent first棋子目标移动到的棋子second
+     * @return first棋子是否能够移动到second棋子位置
+     */
+
+    private boolean handleSecond(ChessComponent chessComponent) {
+        return !chessboard.killSelf(first, chessComponent) && chessComponent.getChessColor() != chessboard.getCurrentColor() &&
+                first.canMoveTo(chessboard.getChessComponents(), chessComponent.getChessboardPoint());
+    }
+}
