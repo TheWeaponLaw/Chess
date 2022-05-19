@@ -28,10 +28,11 @@ public class ClickController {
                 chessboard.judgePawn(first);
                 for (int i = 0; i < chessComponent.moveTo(chessboard.getChessComponents()).size(); i++) {
                     ChessboardPoint temp = chessComponent.moveTo(chessboard.getChessComponents()).get(i);
-                    if(!chessboard.killSelf(first,chessboard.getChessComponents()[temp.getX()][temp.getY()])){
-                    chessboard.getChessComponents()[temp.getX()][temp.getY()].setChosen(true);
-                    chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor=first.getChessColor();
-                    chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();}
+                    if (!chessboard.killSelf(first, chessboard.getChessComponents()[temp.getX()][temp.getY()])) {
+                        chessboard.getChessComponents()[temp.getX()][temp.getY()].setChosen(true);
+                        chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor = first.getChessColor();
+                        chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();
+                    }
                 }
                 first.repaint();
             }
@@ -41,7 +42,7 @@ public class ClickController {
                 for (int i = 0; i < chessComponent.moveTo(chessboard.getChessComponents()).size(); i++) {
                     ChessboardPoint temp = chessComponent.moveTo(chessboard.getChessComponents()).get(i);
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].setChosen(false);
-                    chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor=null;
+                    chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor = null;
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();
                 }
                 ChessComponent recordFirst = first;
@@ -54,7 +55,7 @@ public class ClickController {
                 for (int i = 0; i < first.moveTo(chessboard.getChessComponents()).size(); i++) {
                     ChessboardPoint temp = first.moveTo(chessboard.getChessComponents()).get(i);
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].setChosen(false);
-                    chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor=null;
+                    chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor = null;
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();
                 }
                 chessboard.swapChessComponents(first, chessComponent);
@@ -62,20 +63,21 @@ public class ClickController {
                 first = null;
             }
         }
-//    if(chessboard.getCurrentColor()!=ChessColor.WHITE&&chessboard.pve==1){
-//        Random random = new Random();
-//        int t = random.nextInt(chessboard.randomChessComponent(ChessColor.BLACK).size());
-//        ChessComponent chess = chessboard.randomChessComponent(ChessColor.BLACK).get(t);
-//        int k = random.nextInt(chess.moveTo(chessboard.getChessComponents()).size());
-//        ChessComponent chess2 = chessboard.getChessComponents()[chess.moveTo(chessboard.getChessComponents()).get(k).getX()][chess.moveTo(chessboard.getChessComponents()).get(k).getY()];
-//        while((!chessboard.killSelf(chess, chess2) && chess2.getChessColor() != chessboard.getCurrentColor() &&
-//                chess.canMoveTo(chessboard.getChessComponents(), chess2.getChessboardPoint()))){
-//             k = random.nextInt(chess.moveTo(chessboard.getChessComponents()).size());
-//        }
-//        chessboard.memory.add(chessboard.getChessboardGraph1());
-//        chessboard.swapColor();
-//        chessboard.swapChessComponents(chess, chess2);
-
+        if (chessboard.getCurrentColor() != ChessColor.WHITE && chessboard.pve == 1) {
+            Random random = new Random();
+            int t = random.nextInt(chessboard.randomChessComponent(ChessColor.BLACK).size());
+            ChessComponent chess = chessboard.randomChessComponent(ChessColor.BLACK).get(t);
+            int k = random.nextInt(chess.moveTo(chessboard.getChessComponents()).size());
+            ChessComponent chess2 = chessboard.getChessComponents()[chess.moveTo(chessboard.getChessComponents()).get(k).getX()][chess.moveTo(chessboard.getChessComponents()).get(k).getY()];
+            while ((!chessboard.killSelf(chess, chess2) && chess2.getChessColor() == ChessColor.BLACK &&
+                    chess.canMoveTo(chessboard.getChessComponents(), chess2.getChessboardPoint()))) {
+                k = random.nextInt(chess.moveTo(chessboard.getChessComponents()).size());
+                chess2 = chessboard.getChessComponents()[chess.moveTo(chessboard.getChessComponents()).get(k).getX()][chess.moveTo(chessboard.getChessComponents()).get(k).getY()];
+            }
+            chessboard.memory.add(chessboard.getChessboardGraph1());
+            chessboard.swapColor();
+            chessboard.swapChessComponents(chess, chess2);
+        }
     }
 
     /**

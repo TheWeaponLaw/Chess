@@ -44,11 +44,12 @@ public class ChessGameFrame extends JFrame {
         resetBoard();
         addLoadButton();
         addSaveButton();
+        changeButton();
         addMemoryButton();
         reviewingButton();
         addRefreshButton();
         addBackground();
-//        changeButton();
+
     }
 
 
@@ -289,17 +290,16 @@ public class ChessGameFrame extends JFrame {
 
     }
 
-//    public void changeButton() {
-//        JButton button = new JButton("Change mode");
-//        button.setLocation(HEIGHT - 25, HEIGHT / 10 + 480);
-//        button.setSize(200, 60);
-//        button.setBackground(Color.WHITE);
-//        button.setFont(new Font("Rockwell", Font.BOLD, 15));
-//        button.setVisible(true);
-//        add(button);
-//
-//        button.addActionListener(e -> {
-//            this.getGameController().getChessboard().pve = this.gameController.getChessboard().pve == 1 ? 0 : 1;
-//        });
-//    }
+    public void changeButton() {
+        JButton button = new JButton("Change mode");
+        button.setLocation(HEIGHT - 25, HEIGHT / 10 + 480);
+        button.setSize(200, 60);
+        button.setFont(new Font("Rockwell", Font.BOLD, 15));
+        button.setVisible(true);
+        add(button);
+
+        button.addActionListener(e -> {
+            this.getGameController().getChessboard().pve = this.gameController.getChessboard().pve == 1 ? 0 : 1;
+        });
+    }
 }
