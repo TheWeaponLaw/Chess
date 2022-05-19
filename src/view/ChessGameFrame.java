@@ -122,7 +122,7 @@ public class ChessGameFrame extends JFrame {
 //            System.out.println("Click load");
 //            String path = JOptionPane.showInputDialog(this, "Input Path here");
 //            gameController.loadGameFromFile(path);
-            JFileChooser jfc = new JFileChooser("E:\\武器法\\大学\\学习\\Java\\Project\\ChessDemo\\存储棋盘");
+            JFileChooser jfc = new JFileChooser(".\\存储棋盘");
             jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             jfc.showDialog(new JLabel(), "选择");
             File file = jfc.getSelectedFile();
@@ -147,14 +147,20 @@ public class ChessGameFrame extends JFrame {
             String path = jOptionPane.showInputDialog(this, "Input name here");
             int count = 0;
             if (path.length() != 0 || path == null) {
-                path = "E:\\武器法\\大学\\学习\\Java\\Project\\ChessDemo\\存储棋盘\\" + path + ".txt";
+//                path = "E:\\武器法\\大学\\学习\\Java\\Project\\ChessDemo\\存储棋盘\\" + path + ".txt";
+                path = ".\\存储棋盘\\" + path + ".txt";
             } else {
-                File file = new File("E:\\武器法\\大学\\学习\\Java\\Project\\ChessDemo\\存储棋盘\\" + "测试" + count + ".txt");
+//                File file = new File("E:\\武器法\\大学\\学习\\Java\\Project\\ChessDemo\\存储棋盘\\" + "测试" + count + ".txt");
+                File file = new File(".\\存储棋盘\\" + "测试" + count + ".txt");
                 while (file.exists()) {
                     count++;
-                    file = new File("E:\\武器法\\大学\\学习\\Java\\Project\\ChessDemo\\存储步骤\\" + "测试" + count + ".txt");
+//                    file = new File("E:\\武器法\\大学\\学习\\Java\\Project\\ChessDemo\\存储步骤\\" + "测试" + count + ".txt");
+                    file = new File(".\\存储步骤\\" + "测试" + count + ".txt");
+
                 }
-                path = "E:\\武器法\\大学\\学习\\Java\\Project\\ChessDemo\\存储棋盘\\" + "测试" + count + ".txt";
+//                path = "E:\\武器法\\大学\\学习\\Java\\Project\\ChessDemo\\存储棋盘\\" + "测试" + count + ".txt";
+                path = ".\\存储棋盘\\" + "测试" + count + ".txt";
+
             }
             gameController.saveGameFromFile(path);
             StringBuilder path2 = new StringBuilder();
