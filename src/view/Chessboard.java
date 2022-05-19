@@ -40,7 +40,8 @@ public class Chessboard extends JComponent {
     public ChessboardPoint specialPawnKill;
     public int count = 3;
     public int pve = 0;
-    public int multiplyKill = 0;
+    public int multiplyKillW = 0;
+    public int multiplyKillB = 0;
 
 
     public Chessboard(int width, int height) {
@@ -129,8 +130,11 @@ public class Chessboard extends JComponent {
                 chessGameFrame.chosen(chess1);
             }
         }
-        if(!judgeKill(chess1)){
-            multiplyKill=0;
+        if (!judgeKill(chess1) && chess1.getChessColor() == ChessColor.WHITE) {
+            multiplyKillW = 0;
+        }
+        if (!judgeKill(chess1) && chess1.getChessColor() == ChessColor.BLACK) {
+            multiplyKillB = 0;
         }
         if (judgeKillFinal(chess1)) {
             String temp;
@@ -141,6 +145,8 @@ public class Chessboard extends JComponent {
             }
             chessGameFrame.warning(temp + " win");
             chessGameFrame.reviewing();
+            multiplyKillW = 0;
+            multiplyKillB = 0;
 //            initChess();
 //            resetCurrentColor();
 //            chessGameFrame.refresh();
@@ -151,6 +157,8 @@ public class Chessboard extends JComponent {
         if (judgeDraw(chess1)) {
             chessGameFrame.warning("Draw.");
             chessGameFrame.reviewing();
+            multiplyKillW = 0;
+            multiplyKillB = 0;
 //            initChess();
 //            resetCurrentColor();
 //            chessGameFrame.refresh();
@@ -373,7 +381,11 @@ public class Chessboard extends JComponent {
         int signal3 = 1;
 
         if (judgeKill(chess1)) {
-            multiplyKill++;
+            if (chess1.getChessColor() == ChessColor.WHITE) {
+                multiplyKillW++;
+            } else if (chess1.getChessColor() == ChessColor.BLACK) {
+                multiplyKillB++;
+            }
             //可能有bug
             ChessColor enemyColor = currentColor == ChessColor.BLACK ? ChessColor.BLACK : ChessColor.WHITE;
             String name;
@@ -509,9 +521,21 @@ public class Chessboard extends JComponent {
     }
 
     public boolean judgeDraw(ChessComponent chess1) {
-        if(multiplyKill==5){
+        if (multiplyKillW == 5 || multiplyKillB == 5) {
             return true;
         }
+        String[] blackSide = new String[3];
+        String[] whiteSide = new String[3];
+        int count = 0;
+        if (count % 2 == 0) {
+            whiteSide[(count / 2) % 3] = getChessboardGraph1().substring(0, 64);
+        }
+        if (count % 2 == 1) {
+            blackSide[((count - 1) / 2) % 3] = getChessboardGraph1().substring(0,64);
+        }
+
+        count++;
+
         if (!judgeKill(chess1)) {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
@@ -594,6 +618,8 @@ public class Chessboard extends JComponent {
             getChessboardGraph.append(-1);
             getChessboardGraph.append(-1);
         }
+        getChessboardGraph.append(multiplyKillW);
+        getChessboardGraph.append(multiplyKillB);
         return getChessboardGraph.toString();
     }
 
@@ -645,6 +671,8 @@ public class Chessboard extends JComponent {
         specialPawn1 = new ChessboardPoint(memory.charAt(66) - '0', memory.charAt(67) - '0');
         specialPawn2 = new ChessboardPoint(memory.charAt(68) - '0', memory.charAt(69) - '0');
         specialPawnKill = new ChessboardPoint(memory.charAt(70) - '0', memory.charAt(71) - '0');
+        multiplyKillW = memory.charAt(72) - '0';
+        multiplyKillB = memory.charAt(73) - '0';
     }
 
     public ArrayList<ChessComponent> randomChessComponent(ChessColor chessColor) {
@@ -653,13 +681,13 @@ public class Chessboard extends JComponent {
             for (int j = 0; j < 8; j++) {
                 int count = 0;
                 if (chessComponents[i][j].getChessColor() == chessColor) {
-                    if (chessComponents[i][j].moveTo(chessComponents)!=null&&chessComponents[i][j].moveTo(chessComponents).size() != 0) {
-                            for (int k = 0; k < chessComponents[i][j].moveTo(chessComponents).size(); k++) {
-                                if (!killSelf(chessComponents[i][j], chessComponents[chessComponents[i][j].moveTo(chessComponents).get(k).getX()]
-                                        [chessComponents[i][j].moveTo(chessComponents).get(k).getY()])) {
-                                    count++;
-                                }
+                    if (chessComponents[i][j].moveTo(chessComponents) != null && chessComponents[i][j].moveTo(chessComponents).size() != 0) {
+                        for (int k = 0; k < chessComponents[i][j].moveTo(chessComponents).size(); k++) {
+                            if (!killSelf(chessComponents[i][j], chessComponents[chessComponents[i][j].moveTo(chessComponents).get(k).getX()]
+                                    [chessComponents[i][j].moveTo(chessComponents).get(k).getY()])) {
+                                count++;
                             }
+                        }
 
                         if (count != 0) {
                             randomOne.add(chessComponents[i][j]);

@@ -103,6 +103,8 @@ public class ChessGameFrame extends JFrame {
             gameController.getChessboard().count = 3;
             gameController.getChessboard().specialPawn1 = null;
             gameController.getChessboard().specialPawn2 = null;
+            gameController.getChessboard().multiplyKillW = 0;
+            gameController.getChessboard().multiplyKillB = 0;
         });
         button.setLocation(HEIGHT - 25, HEIGHT / 10 + 60);
         button.setSize(200, 60);
@@ -184,7 +186,7 @@ public class ChessGameFrame extends JFrame {
             refresh();
             repaint();
             getGameController().getChessboard().memory = new ArrayList<>();
-            gameController.getChessboard().multiplyKill=0;
+            gameController.getChessboard().multiplyKillW =0;
         }
 
     }
