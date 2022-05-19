@@ -40,6 +40,7 @@ public class Chessboard extends JComponent {
     public ChessboardPoint specialPawnKill;
     public int count = 3;
     public int pve = 0;
+    public int multiplyKill = 0;
 
 
     public Chessboard(int width, int height) {
@@ -127,6 +128,9 @@ public class Chessboard extends JComponent {
             if (chess1.getChessColor() == ChessColor.WHITE && chess1.getChessboardPoint().getX() == 0) {
                 chessGameFrame.chosen(chess1);
             }
+        }
+        if(!judgeKill(chess1)){
+            multiplyKill=0;
         }
         if (judgeKillFinal(chess1)) {
             String temp;
@@ -369,6 +373,7 @@ public class Chessboard extends JComponent {
         int signal3 = 1;
 
         if (judgeKill(chess1)) {
+            multiplyKill++;
             //可能有bug
             ChessColor enemyColor = currentColor == ChessColor.BLACK ? ChessColor.BLACK : ChessColor.WHITE;
             String name;
@@ -504,6 +509,9 @@ public class Chessboard extends JComponent {
     }
 
     public boolean judgeDraw(ChessComponent chess1) {
+        if(multiplyKill==5){
+            return true;
+        }
         if (!judgeKill(chess1)) {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
@@ -662,5 +670,6 @@ public class Chessboard extends JComponent {
         }
         return randomOne;
     }
+
 
 }
