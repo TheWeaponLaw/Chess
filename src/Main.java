@@ -50,8 +50,4 @@ public class Main {
 //        });
     }
 
-
-//Nihajjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-
-
 }
