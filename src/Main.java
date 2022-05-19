@@ -11,24 +11,31 @@ public class Main {
         jFrame.setSize(500,350);
         jFrame.setLocationRelativeTo(new Container());
         jFrame.setBackground(Color.WHITE);
+
+
         JLabel jLabel = new JLabel();
         jLabel.setText("Welcome to play the chess");
         jLabel.setBackground(Color.WHITE);
-        jLabel.setLocation(125,55);
+        jLabel.setLocation(110,55);
         jLabel.setSize(300,100);
         jLabel.setFont(new Font("Rockwell",Font.BOLD,20));
         jLabel.setForeground(Color.RED);
+
+
         Button button = new Button("PVP");
         button.setLocation(180,120);
         button.setSize(100, 30);
         button.setFont(new Font("Rockwell", Font.BOLD, 10));
-        Button button1 = new Button("PVE");
-        button1.setLocation(180,120);
-        button1.setSize(100, 60);
-        button1.setFont(new Font("Rockwell", Font.BOLD, 10));
-        button1.setLabel("PVE");
 
-        jFrame.add(button1);
+
+        Button button1 = new Button("PVE");;
+        button1.setLocation(180,160);
+        button1.setSize(100, 30);
+        button1.setFont(new Font("Rockwell", Font.BOLD, 10));
+        button1.setBackground(Color.WHITE);
+
+
+
         ImageIcon imageIcon=new ImageIcon(".\\Enter.jpg");
         JLabel jLabel1 = new JLabel(imageIcon);
         jLabel1.setSize(600,600);
