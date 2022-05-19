@@ -48,16 +48,10 @@ public class Main {
 //            mainFrame.setVisible(true);
 //            mainFrame.getGameController().getChessboard().pve =1;
 //        });
-
-
-//        SwingUtilities.invokeLater(() -> {
-//            ChessGameFrame mainFrame = new ChessGameFrame(1000, 760);
-//            mainFrame.setVisible(true);
-//        });
     }
 
 
-
+//Nihajjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
 
 
 }
