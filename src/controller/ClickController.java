@@ -6,8 +6,12 @@ import model.ChessComponent;
 import view.Chessboard;
 import view.ChessboardPoint;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -34,6 +38,7 @@ public class ClickController {
                         chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();
                     }
                 }
+                playOnce(new File(".\\音效\\movesound.wav"));
                 first.repaint();
             }
         } else {
@@ -45,6 +50,7 @@ public class ClickController {
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor = null;
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();
                 }
+                playOnce(new File(".\\音效\\movesound.wav"));
                 ChessComponent recordFirst = first;
                 first = null;
                 recordFirst.repaint();
@@ -58,6 +64,7 @@ public class ClickController {
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor = null;
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();
                 }
+                playOnce(new File(".\\音效\\movesound.wav"));
                 chessboard.swapChessComponents(first, chessComponent);
                 first.setSelected(false);
                 first = null;
@@ -75,6 +82,7 @@ public class ClickController {
                 chess2 = chessboard.getChessComponents()[chess.moveTo(chessboard.getChessComponents()).get(k).getX()][chess.moveTo(chessboard.getChessComponents()).get(k).getY()];
             }
             chessboard.memory.add(chessboard.getChessboardGraph1());
+            playOnce(new File(".\\音效\\movesound.wav"));
             chessboard.swapColor();
             chessboard.swapChessComponents(chess, chess2);
         }
@@ -97,5 +105,19 @@ public class ClickController {
     private boolean handleSecond(ChessComponent chessComponent) {
         return !chessboard.killSelf(first, chessComponent) && chessComponent.getChessColor() != chessboard.getCurrentColor() &&
                 first.canMoveTo(chessboard.getChessComponents(), chessComponent.getChessboardPoint());
+    }
+    public static void playOnce(File file) {
+        try {
+            //创建相当于音乐播放器的对象
+            Clip clip = AudioSystem.getClip();
+            //将传入的文件转成可播放的文件
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(file);
+            //播放器打开这个文件
+            clip.open(audioInput);
+            clip.start();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        //死循环不让主程序结束（swing可不用）
     }
 }
