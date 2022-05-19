@@ -184,6 +184,7 @@ public class ChessGameFrame extends JFrame {
             refresh();
             repaint();
             getGameController().getChessboard().memory = new ArrayList<>();
+            gameController.getChessboard().multiplyKill=0;
         }
 
     }

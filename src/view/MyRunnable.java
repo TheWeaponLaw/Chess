@@ -26,5 +26,6 @@ public class MyRunnable implements Runnable {
         chessGameFrame.refresh();
         chessGameFrame.repaint();
         chessGameFrame.getGameController().getChessboard().memory = new ArrayList<>();
+        chessGameFrame.getGameController().getChessboard().multiplyKill=0;
     }
 }
