@@ -38,7 +38,7 @@ public class ClickController {
                         chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();
                     }
                 }
-                playOnce(new File(".\\音效\\movesound.wav"));
+                playOnce(new File(".\\音效\\moveSound.wav"));
                 first.repaint();
             }
         } else {
@@ -50,7 +50,7 @@ public class ClickController {
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor = null;
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();
                 }
-                playOnce(new File(".\\音效\\movesound.wav"));
+                playOnce(new File(".\\音效\\moveSound.wav"));
                 ChessComponent recordFirst = first;
                 first = null;
                 recordFirst.repaint();
@@ -64,7 +64,7 @@ public class ClickController {
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].chosenColor = null;
                     chessboard.getChessComponents()[temp.getX()][temp.getY()].repaint();
                 }
-                playOnce(new File(".\\音效\\movesound.wav"));
+                playOnce(new File(".\\音效\\moveSound.wav"));
                 chessboard.swapChessComponents(first, chessComponent);
                 first.setSelected(false);
                 first = null;
@@ -82,7 +82,6 @@ public class ClickController {
                 chess2 = chessboard.getChessComponents()[chess.moveTo(chessboard.getChessComponents()).get(k).getX()][chess.moveTo(chessboard.getChessComponents()).get(k).getY()];
             }
             chessboard.memory.add(chessboard.getChessboardGraph1());
-            playOnce(new File(".\\音效\\movesound.wav"));
             chessboard.swapColor();
             chessboard.swapChessComponents(chess, chess2);
         }
