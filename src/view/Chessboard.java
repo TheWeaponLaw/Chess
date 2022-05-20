@@ -683,7 +683,7 @@ public class Chessboard extends JComponent {
             for (int j = 0; j < 8; j++) {
                 int count = 0;
                 if (chessComponents[i][j].getChessColor() == chessColor) {
-                    if (chessComponents[i][j].moveTo(chessComponents) != null && chessComponents[i][j].moveTo(chessComponents).size() != 0) {
+                    if (chessComponents[i][j].moveTo(chessComponents) != null) {
                         for (int k = 0; k < chessComponents[i][j].moveTo(chessComponents).size(); k++) {
                             if (!killSelf(chessComponents[i][j], chessComponents[chessComponents[i][j].moveTo(chessComponents).get(k).getX()]
                                     [chessComponents[i][j].moveTo(chessComponents).get(k).getY()])) {
