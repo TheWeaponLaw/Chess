@@ -272,6 +272,13 @@ public class ChessGameFrame extends JFrame {
                 gameController.getChessboard().loadGame1(gameController.getChessboard().memory.get(gameController.getChessboard().memory.size() - 1));
                 //移除最新一次的
                 gameController.getChessboard().memory.remove(gameController.getChessboard().memory.size() - 1);
+                if(gameController.getChessboard().countDraw>0){gameController.getChessboard().countDraw--;}
+                if(gameController.getChessboard().getCurrentColor()==ChessColor.BLACK&&gameController.getChessboard().multiplyKillB>0){
+                    gameController.getChessboard().multiplyKillB--;
+                }
+                if(gameController.getChessboard().getCurrentColor()==ChessColor.WHITE&&gameController.getChessboard().multiplyKillW>0){
+                    gameController.getChessboard().multiplyKillW--;
+                }
             } else {
                 //若为零悔棋到头，提醒
                 warning("You are at the first step.");

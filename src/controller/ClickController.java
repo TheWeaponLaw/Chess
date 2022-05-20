@@ -76,7 +76,7 @@ public class ClickController {
             ChessComponent chess = chessboard.randomChessComponent(ChessColor.BLACK).get(t);
             int k = random.nextInt(chess.moveTo(chessboard.getChessComponents()).size());
             ChessComponent chess2 = chessboard.getChessComponents()[chess.moveTo(chessboard.getChessComponents()).get(k).getX()][chess.moveTo(chessboard.getChessComponents()).get(k).getY()];
-            while ((!chessboard.killSelf(chess, chess2) && chess2.getChessColor() == ChessColor.BLACK &&
+            while ((chessboard.killSelf(chess, chess2)  &&
                     chess.canMoveTo(chessboard.getChessComponents(), chess2.getChessboardPoint()))) {
                 k = random.nextInt(chess.moveTo(chessboard.getChessComponents()).size());
                 chess2 = chessboard.getChessComponents()[chess.moveTo(chessboard.getChessComponents()).get(k).getX()][chess.moveTo(chessboard.getChessComponents()).get(k).getY()];
