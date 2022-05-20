@@ -112,7 +112,6 @@ public abstract class ChessComponent extends JComponent {
     @Override
     protected void processMouseEvent(MouseEvent e) {
         super.processMouseEvent(e);
-
         if(e.getID()==MouseEvent.MOUSE_ENTERED){
             Graphics g=getGraphics();
             ((Graphics2D) g).setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.5f));
