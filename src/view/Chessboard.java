@@ -91,16 +91,16 @@ public class Chessboard extends JComponent {
     public void swapChessComponents(ChessComponent chess1, ChessComponent chess2) {
         count++;
         if (chess1 instanceof PawnChessComponent && Math.abs(chess1.getChessboardPoint().getX() - chess2.getChessboardPoint().getX()) == 2) {
-            if (chess2.getChessboardPoint().getY() - 1 >= 0) {
+//            if (chess2.getChessboardPoint().getY() - 1 >= 0) {
                 specialPawn1 = new ChessboardPoint(chess2.getChessboardPoint().getX(), chess2.getChessboardPoint().getY() - 1);
-            } else {
-                specialPawn1 = new ChessboardPoint(-1, -1);
-            }
-            if (chess2.getChessboardPoint().getY() + 1 <= 7) {
+//            } else {
+//                specialPawn1 = new ChessboardPoint(-1, -1);
+//            }
+//            if (chess2.getChessboardPoint().getY() + 1 <= 7) {
                 specialPawn2 = new ChessboardPoint(chess2.getChessboardPoint().getX(), chess2.getChessboardPoint().getY() + 1);
-            } else {
-                specialPawn2 = new ChessboardPoint(-1, -1);
-            }
+//            } else {
+//                specialPawn2 = new ChessboardPoint(-1, -1);
+//            }
             count = 0;
         }
         boolean try1 = chess2.getChessboardPoint().equals(specialPawnKill);

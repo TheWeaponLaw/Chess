@@ -66,27 +66,29 @@ public class PawnChessComponent extends ChessComponent {
         } else {
             a = 1;
         }
-        if (this.getChessboardPoint().getX() + a>=0&&this.getChessboardPoint().getX() + a<=7&&chessboard[this.getChessboardPoint().getX() + a][this.getChessboardPoint().getY()].name == '_') {
+        if (this.getChessboardPoint().getX() + a >= 0 && this.getChessboardPoint().getX() + a <= 7 && chessboard[this.getChessboardPoint().getX() + a][this.getChessboardPoint().getY()].name == '_') {
             canMoveTo.add(this.getChessboardPoint().offset(a, 0));
-            if (this.getChessboardPoint().getX() == 3.5 - a * 2.5&&chessboard[this.getChessboardPoint().getX() + a * 2][this.getChessboardPoint().getY()].name == '_') {
+            if (this.getChessboardPoint().getX() == 3.5 - a * 2.5 && chessboard[this.getChessboardPoint().getX() + a * 2][this.getChessboardPoint().getY()].name == '_') {
                 canMoveTo.add(this.getChessboardPoint().offset(a * 2, 0));
             }
         }
 
         if (this.getChessboardPoint().getY() != 7) {
-            if (this.getChessboardPoint().getX() + a>=0&&this.getChessboardPoint().getX() + a<=7&&chessboard[this.getChessboardPoint().getX() + a][this.getChessboardPoint().getY() + 1].name != '_' &&
+            if (this.getChessboardPoint().getX() + a >= 0 && this.getChessboardPoint().getX() + a <= 7 && chessboard[this.getChessboardPoint().getX() + a][this.getChessboardPoint().getY() + 1].name != '_' &&
                     chessboard[this.getChessboardPoint().getX() + a][this.getChessboardPoint().getY() + 1].getChessColor() != this.getChessColor()) {
                 canMoveTo.add(this.getChessboardPoint().offset(a, 1));
             }
         }
         if (this.getChessboardPoint().getY() != 0) {
-            if (this.getChessboardPoint().getX() + a>=0&&this.getChessboardPoint().getX() + a<=7&&chessboard[this.getChessboardPoint().getX() + a][this.getChessboardPoint().getY() - 1].name != '_' &&
+            if (this.getChessboardPoint().getX() + a >= 0 && this.getChessboardPoint().getX() + a <= 7 && chessboard[this.getChessboardPoint().getX() + a][this.getChessboardPoint().getY() - 1].name != '_' &&
                     chessboard[this.getChessboardPoint().getX() + a][this.getChessboardPoint().getY() - 1].getChessColor() != this.getChessColor()) {
                 canMoveTo.add(this.getChessboardPoint().offset(a, -1));
             }
         }
-        if(symbol==1&&this.chessColor!=chessboard[specialPawnPoint.getX()][specialPawnPoint.getY()-a].chessColor){
-            canMoveTo.add(specialPawnPoint);
+        if (symbol == 1  && specialPawnPoint.getX() >= 0 && specialPawnPoint.getX() < 8 && specialPawnPoint.getY() - a < 8 && specialPawnPoint.getY() - a >= 0) {
+            if (symbol == 1 && this.chessColor != chessboard[specialPawnPoint.getX()][specialPawnPoint.getY() - a].chessColor) {
+                canMoveTo.add(specialPawnPoint);
+            }
         }
         while (canMoveTo.contains(null)) {
             canMoveTo.remove(null);
