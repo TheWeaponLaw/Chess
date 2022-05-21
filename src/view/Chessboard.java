@@ -43,8 +43,8 @@ public class Chessboard extends JComponent {
     public int multiplyKillW = 0;
     public int multiplyKillB = 0;
     public int countDraw = 0;
-    String[] blackSide = {"1","2","3","4","5","6"};
-    String[] whiteSide = {"1","2","3","4","5","6"};
+    String[] blackSide = {"1", "2", "3", "4", "5", "6"};
+    String[] whiteSide = {"1", "2", "3", "4", "5", "6"};
 
 
     public Chessboard(int width, int height) {
@@ -91,19 +91,10 @@ public class Chessboard extends JComponent {
     public void swapChessComponents(ChessComponent chess1, ChessComponent chess2) {
         count++;
         if (chess1 instanceof PawnChessComponent && Math.abs(chess1.getChessboardPoint().getX() - chess2.getChessboardPoint().getX()) == 2) {
-//            if (chess2.getChessboardPoint().getY() - 1 >= 0) {
-                specialPawn1 = new ChessboardPoint(chess2.getChessboardPoint().getX(), chess2.getChessboardPoint().getY() - 1);
-//            } else {
-//                specialPawn1 = new ChessboardPoint(-1, -1);
-//            }
-//            if (chess2.getChessboardPoint().getY() + 1 <= 7) {
-                specialPawn2 = new ChessboardPoint(chess2.getChessboardPoint().getX(), chess2.getChessboardPoint().getY() + 1);
-//            } else {
-//                specialPawn2 = new ChessboardPoint(-1, -1);
-//            }
+            specialPawn1 = new ChessboardPoint(chess2.getChessboardPoint().getX(), chess2.getChessboardPoint().getY() - 1);
+            specialPawn2 = new ChessboardPoint(chess2.getChessboardPoint().getX(), chess2.getChessboardPoint().getY() + 1);
             count = 0;
         }
-        boolean try1 = chess2.getChessboardPoint().equals(specialPawnKill);
         if (chess1 instanceof PawnChessComponent && chess2.getChessboardPoint().equals(specialPawnKill) && count == 1) {
             int x = specialPawn2.getX();
             int y = (specialPawn1.getY() + specialPawn2.getY()) / 2;
@@ -531,9 +522,9 @@ public class Chessboard extends JComponent {
             whiteSide[(countDraw / 2) % 6] = getChessboardGraph1().substring(0, 64);
         }
         if (countDraw % 2 == 1) {
-            blackSide[((countDraw - 1) / 2) % 3] = getChessboardGraph1().substring(0,64);
+            blackSide[((countDraw - 1) / 2) % 3] = getChessboardGraph1().substring(0, 64);
         }
-        if((blackSide[1].equals(blackSide[3])&&blackSide[3].equals(blackSide[5]))||(blackSide[0].equals(blackSide[2])&&blackSide[2].equals(blackSide[4]))||(whiteSide[0].equals(whiteSide[2])&&whiteSide[2].equals(whiteSide[4]))||(whiteSide[1].equals(whiteSide[3])&&whiteSide[3].equals(whiteSide[5]))){
+        if ((blackSide[1].equals(blackSide[3]) && blackSide[3].equals(blackSide[5])) || (blackSide[0].equals(blackSide[2]) && blackSide[2].equals(blackSide[4])) || (whiteSide[0].equals(whiteSide[2]) && whiteSide[2].equals(whiteSide[4])) || (whiteSide[1].equals(whiteSide[3]) && whiteSide[3].equals(whiteSide[5]))) {
             return true;
         }
         countDraw++;
@@ -601,14 +592,21 @@ public class Chessboard extends JComponent {
         getChessboardGraph.append(count);
         if (specialPawn1 != null) {
             getChessboardGraph.append(specialPawn1.getX());
-            getChessboardGraph.append(specialPawn1.getY());
+            if(specialPawn2.getY()==-1){
+            getChessboardGraph.append('/');}
+            else {
+                getChessboardGraph.append(specialPawn2.getY());
+            }
         } else {
             getChessboardGraph.append(-1);
             getChessboardGraph.append(-1);
         }
         if (specialPawn2 != null) {
             getChessboardGraph.append(specialPawn2.getX());
-            getChessboardGraph.append(specialPawn2.getY());
+            if (specialPawn1.getY() == -1) {
+                getChessboardGraph.append('/');
+            }
+            else {getChessboardGraph.append(specialPawn2.getY());}
         } else {
             getChessboardGraph.append(-1);
             getChessboardGraph.append(-1);

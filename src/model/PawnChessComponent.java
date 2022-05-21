@@ -85,10 +85,10 @@ public class PawnChessComponent extends ChessComponent {
                 canMoveTo.add(this.getChessboardPoint().offset(a, -1));
             }
         }
-        if (symbol == 1  && specialPawnPoint.getX() >= 0 && specialPawnPoint.getX() < 8 && specialPawnPoint.getY() - a < 8 && specialPawnPoint.getY() - a >= 0) {
-            if (symbol == 1 && this.chessColor != chessboard[specialPawnPoint.getX()][specialPawnPoint.getY() - a].chessColor) {
+//        if (symbol == 1  && specialPawnPoint.getX() >= 0 && specialPawnPoint.getX() < 8 && specialPawnPoint.getY() - a < 8 && specialPawnPoint.getY() - a >= 0) {
+//            if (symbol == 1 && this.chessColor != chessboard[specialPawnPoint.getX()][specialPawnPoint.getY() - a].chessColor) {
+            if(symbol==1){
                 canMoveTo.add(specialPawnPoint);
-            }
         }
         while (canMoveTo.contains(null)) {
             canMoveTo.remove(null);
