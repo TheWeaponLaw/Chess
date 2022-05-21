@@ -193,6 +193,7 @@ public class ChessGameFrame extends JFrame {
             gameController.getChessboard().memory.add(gameController.getChessboard().getChessboardGraph1());
             Thread aThread = new Thread(new MyRunnable(this));
             aThread.start();
+            aThread.interrupt();
         } else {
             getGameController().getChessboard().initChess();
             getGameController().getChessboard().resetCurrentColor();
