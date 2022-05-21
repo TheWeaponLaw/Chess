@@ -40,6 +40,8 @@ public class ChessGameFrame extends JFrame {
         setLocationRelativeTo(null); // Center the window.
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //设置程序关闭按键，如果点击右上方的叉就游戏全部关闭了
         setLayout(null);
+        ImageIcon imageIcon = new ImageIcon(".\\图标\\图标.png");
+        setIconImage(imageIcon.getImage());
         playMusic(new File(".\\音效\\bgm.wav"));
 
 
@@ -289,7 +291,6 @@ public class ChessGameFrame extends JFrame {
 
     public void addBackground() {
         ImageIcon imageIcon = new ImageIcon(path);
-        ;
         background.setIcon(imageIcon);
         imageIcon.setImage(imageIcon.getImage().getScaledInstance(this.WIDTH, this.HEIGHT, 5));
         background.setBounds(0, 0, this.WIDTH, this.HEIGHT);
