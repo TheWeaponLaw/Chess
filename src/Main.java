@@ -12,7 +12,6 @@ public class Main {
         jFrame.setLocationRelativeTo(new Container());
         jFrame.setBackground(Color.WHITE);
 
-
         JLabel jLabel = new JLabel();
         jLabel.setText("Welcome to play the chess");
         jLabel.setBackground(Color.WHITE);
@@ -36,14 +35,14 @@ public class Main {
 
 
 
-        ImageIcon imageIcon=new ImageIcon(".\\Enter.jpg");
-        JLabel jLabel1 = new JLabel(imageIcon);
-        jLabel1.setSize(600,600);
-        jLabel1.setLocation(-50,-140);
+//        ImageIcon imageIcon=new ImageIcon(".\\Enter.jpg");
+//        JLabel jLabel1 = new JLabel(imageIcon);
+//        jLabel1.setSize(600,600);
+//        jLabel1.setLocation(-50,-140);
         jFrame.add(button);
         jFrame.add(jLabel);
         jFrame.add(button1);
-        jFrame.add(jLabel1,JLayeredPane.DEFAULT_LAYER);
+//        jFrame.add(jLabel1,JLayeredPane.DEFAULT_LAYER);
 
         button.addActionListener(e -> {
             jFrame.dispose();

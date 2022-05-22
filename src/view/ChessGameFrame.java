@@ -54,6 +54,7 @@ public class ChessGameFrame extends JFrame {
         addMemoryButton();
         reviewingButton();
         addRefreshButton();
+//        delete();
         addBackground();
 
     }
@@ -275,11 +276,13 @@ public class ChessGameFrame extends JFrame {
                 gameController.getChessboard().loadGame1(gameController.getChessboard().memory.get(gameController.getChessboard().memory.size() - 1));
                 //移除最新一次的
                 gameController.getChessboard().memory.remove(gameController.getChessboard().memory.size() - 1);
-                if(gameController.getChessboard().countDraw>0){gameController.getChessboard().countDraw--;}
-                if(gameController.getChessboard().getCurrentColor()==ChessColor.BLACK&&gameController.getChessboard().multiplyKillB>0){
+                if (gameController.getChessboard().countDraw > 0) {
+                    gameController.getChessboard().countDraw--;
+                }
+                if (gameController.getChessboard().getCurrentColor() == ChessColor.BLACK && gameController.getChessboard().multiplyKillB > 0) {
                     gameController.getChessboard().multiplyKillB--;
                 }
-                if(gameController.getChessboard().getCurrentColor()==ChessColor.WHITE&&gameController.getChessboard().multiplyKillW>0){
+                if (gameController.getChessboard().getCurrentColor() == ChessColor.WHITE && gameController.getChessboard().multiplyKillW > 0) {
                     gameController.getChessboard().multiplyKillW--;
                 }
             } else {
@@ -338,10 +341,31 @@ public class ChessGameFrame extends JFrame {
             this.getGameController().getChessboard().pve = this.gameController.getChessboard().pve == 1 ? 0 : 1;
         });
     }
-    public static void playMusic(File file)
-    {
-        try
-        {
+
+//    public void delete(){
+//        JButton deleteButton = new JButton("Delete");
+//        deleteButton.setLocation(HEIGHT - 25, HEIGHT / 10 + 550);
+//        deleteButton.setSize(200, 60);
+//        deleteButton.setFont(new Font("Rockwell", Font.BOLD, 15));
+//        deleteButton.setVisible(true);
+//        add(deleteButton);
+//
+//        deleteButton.addActionListener(e -> {
+//            this.getGameController().getChessboard().pve = this.gameController.getChessboard().pve == 1 ? 0 : 1;
+//            JFileChooser jfc = new JFileChooser(".\\存储棋盘");
+//            jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+//            jfc.showDialog(new JLabel(), "选择");
+//            File file = jfc.getSelectedFile();
+//            file.delete();
+//            String temp = file.toString();
+//            temp=temp.replace("棋盘","步骤");
+//            File newFile =new File(temp);
+//            newFile.delete();
+//        });
+//    }
+
+    public static void playMusic(File file) {
+        try {
             //创建相当于音乐播放器的对象
             Clip clip = AudioSystem.getClip();
             //将传入的文件转成可播放的文件
@@ -351,7 +375,7 @@ public class ChessGameFrame extends JFrame {
             //clip.start();//只播放一次
             //循环播放
             clip.loop(Clip.LOOP_CONTINUOUSLY);
-        } catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         //死循环不让主程序结束（swing可不用）
