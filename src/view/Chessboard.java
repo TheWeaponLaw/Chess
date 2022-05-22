@@ -328,25 +328,25 @@ public class Chessboard extends JComponent {
     public String testLoad(List<String> chessData) {
         if (signal == 1) {
 //            signal = 0;
-            return "错误编码：104";
+            return "错误编码：104 文件格式错误";
         }
-        if (chessData.size() != 9) {
-            return "错误编码： 101";
+        if (chessData.size() != 9&&chessData.size()!=8) {
+            return "错误编码： 101 棋盘错误";
         }
         for (int i = 0; i < 8; i++) {
             if (chessData.get(i).length() != 8) {
-                return "错误编码： 101";
+                return "错误编码： 101 棋盘错误";
             }
             for (int j = 0; j < 8; j++) {
                 char in = chessData.get(i).charAt(j);
                 if (in != '_' && in != 'b' && in != 'B' && in != 'r' && in != 'R' && in != ' ' &&
                         in != 'K' && in != 'k' && in != 'P' && in != 'p' && in != 'Q' && in != 'q' && in != 'N' && in != 'n') {
-                    return "错误编码：102";
+                    return "错误编码：102 棋子错误";
                 }
             }
         }
-        if (chessData.get(8).charAt(0) != 'w' && chessData.get(8).charAt(0) != 'b') {
-            return "错误编码：103";
+        if (chessData.size()==8||(chessData.get(8).charAt(0) != 'w' && chessData.get(8).charAt(0) != 'b')) {
+            return "错误编码：103 缺少行棋方";
         }
 
         return null;
