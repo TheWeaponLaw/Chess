@@ -44,7 +44,6 @@ public class ChessGameFrame extends JFrame {
         setIconImage(imageIcon.getImage());
         playMusic(new File(".\\音效\\bgm.wav"));
 
-
         addChessboard();
         addLabel();
         resetBoard();
