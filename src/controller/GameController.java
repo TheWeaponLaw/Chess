@@ -52,10 +52,11 @@ public class GameController {
                 for (int i = 0; i < chessData.size(); i++) {
                     chessboard.memory.add(chessData.get(i));
                 }
+                if(chessData.size()!=0){
                 chessboard.count = chessboard.memory.get(chessData.size() - 1).charAt(65) - '0';
                 chessboard.specialPawn1 = new ChessboardPoint(chessboard.memory.get(chessData.size() - 1).charAt(66) - '0', chessboard.memory.get(chessData.size() - 1).charAt(67) - '0');
                 chessboard.specialPawn2 = new ChessboardPoint(chessboard.memory.get(chessData.size() - 1).charAt(68) - '0', chessboard.memory.get(chessData.size() - 1).charAt(69) - '0');
-                chessboard.specialPawnKill = new ChessboardPoint(chessboard.memory.get(chessData.size() - 1).charAt(70) - '0', chessboard.memory.get(chessData.size() - 1).charAt(71) - '0');
+                chessboard.specialPawnKill = new ChessboardPoint(chessboard.memory.get(chessData.size() - 1).charAt(70) - '0', chessboard.memory.get(chessData.size() - 1).charAt(71) - '0');}
             } else {
                 getChessboard().memory = new ArrayList<>();
                 getChessboard().count = 3;
